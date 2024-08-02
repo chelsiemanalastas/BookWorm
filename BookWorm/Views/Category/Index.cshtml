@@ -1,7 +1,5 @@
 ﻿@model List<Category>
 
-
-
 <div class="container">
     <div class="row pt-4 pb-3">
         <div class="col-6">
@@ -33,7 +31,7 @@
                             <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2" title="Edit">
                                 <i class="bi bi-pencil-fill"></i> 
                             </a>
-                            <a asp-controller="Category" asp-action="Delete" class="btn btn-secondary mx-2" title="Delete">
+                            <a asp-controller="Category" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-secondary mx-2" title="Delete">
                                 <i class="bi bi-trash-fill"></i>
                             </a>
                         </div>
