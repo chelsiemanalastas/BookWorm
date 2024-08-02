@@ -18,6 +18,7 @@
             <tr>
                 <th>Category</th>
                 <th>Order</th>
+                <th></th>
             </tr>
         </thead>
 
@@ -27,6 +28,16 @@
                 <tr>
                     <td>@obj.Name</td>
                     <td>@obj.DisplayOrder</td>
+                    <td>
+                        <div class="w-75 btn-group" role="group">
+                            <a asp-controller="Category" asp-action="Edit" asp-route-id="@obj.Id" class="btn btn-primary mx-2" title="Edit">
+                                <i class="bi bi-pencil-fill"></i> 
+                            </a>
+                            <a asp-controller="Category" asp-action="Delete" class="btn btn-secondary mx-2" title="Delete">
+                                <i class="bi bi-trash-fill"></i>
+                            </a>
+                        </div>
+                    </td>
                 </tr>
             }
         </tbody>

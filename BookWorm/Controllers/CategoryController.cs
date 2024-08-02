@@ -26,9 +26,39 @@ namespace BookWorm.Controllers
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            _context.Categories.Add(obj);
-            _context.SaveChanges();
-            return RedirectToAction("Index");
+            if (ModelState.IsValid) 
+            {
+                _context.Categories.Add(obj);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
+        }
+
+        public IActionResult Edit(int? id)
+        {
+            if (id == null || id == 0) 
+            { 
+                return NotFound();
+            }
+            Category category = _context.Categories.FirstOrDefault(c => c.Id == id);
+            if (category == null)
+            {
+                return NotFound();
+            }
+            return View(category);
+        }
+
+        [HttpPost]
+        public IActionResult Edit(Category obj)
+        {
+            if (ModelState.IsValid)
+            {
+                _context.Categories.Update(obj);
+                _context.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return View();
         }
 
     }
