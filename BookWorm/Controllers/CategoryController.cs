@@ -1,5 +1,5 @@
-﻿using BookWorm.Data;
-using BookWorm.Models;
+﻿using Book.DataAccess;
+using Book.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace BookWorm.Controllers

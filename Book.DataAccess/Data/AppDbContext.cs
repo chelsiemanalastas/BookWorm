@@ -1,7 +1,7 @@
-﻿using BookWorm.Models;
+﻿using Book.Models;
 using Microsoft.EntityFrameworkCore;
 
-namespace BookWorm.Data
+namespace Book.DataAccess
 {
     public class AppDbContext : DbContext 
     {
@@ -9,7 +9,6 @@ namespace BookWorm.Data
         {
             
         }
-
 
         public DbSet<Category> Categories { get; set; }
 
