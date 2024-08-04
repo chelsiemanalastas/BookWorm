@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Book.Models.Models
+namespace Book.Models
 {
     public class Product
     {
@@ -17,6 +17,7 @@ namespace Book.Models.Models
         [MaxLength(250)]
         public string Title { get; set; }
 
+        [Required]
         public string Description { get; set; }
 
         [Required]
