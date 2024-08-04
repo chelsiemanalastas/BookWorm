@@ -4,12 +4,13 @@ using Book.DataAccess.Repository.IRepository;
 using Book.Models;
 using Microsoft.AspNetCore.Mvc;
 
-namespace BookWorm.Controllers
+namespace BookWorm.Areas.Admin.Controllers
 {
+    [Area("Admin")]
     public class CategoryController : Controller
     {
         private readonly IUnitOfWork _unit;
-        public CategoryController(IUnitOfWork unit) 
+        public CategoryController(IUnitOfWork unit)
         {
             _unit = unit;
         }
@@ -20,15 +21,15 @@ namespace BookWorm.Controllers
             return View(categoryList);
         }
 
-        public IActionResult Create() 
-        { 
+        public IActionResult Create()
+        {
             return View();
         }
 
         [HttpPost]
         public IActionResult Create(Category obj)
         {
-            if (ModelState.IsValid) 
+            if (ModelState.IsValid)
             {
                 _unit.Category.Add(obj);
                 _unit.Save();
@@ -40,8 +41,8 @@ namespace BookWorm.Controllers
 
         public IActionResult Edit(int? id)
         {
-            if (id == null || id == 0) 
-            { 
+            if (id == null || id == 0)
+            {
                 return NotFound();
             }
             Category category = _unit.Category.Get(c => c.Id == id);
@@ -85,7 +86,7 @@ namespace BookWorm.Controllers
             Category category = _unit.Category.Get(c => c.Id == id);
             if (category == null)
             {
-                return NotFound(); 
+                return NotFound();
             }
             _unit.Category.Remove(category);
             _unit.Save();
