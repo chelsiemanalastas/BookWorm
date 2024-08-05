@@ -50,7 +50,6 @@ namespace BookWorm.Areas.Admin.Controllers
                 productVM.Product = _unit.Product.Get(u=>u.Id == id);
                 return View(productVM);
             }
-            return View(productVM);
         }
 
         [HttpPost]
@@ -73,10 +72,18 @@ namespace BookWorm.Areas.Admin.Controllers
                     obj.Product.ImageUrl = $"\\{imagePath}\\{fileName}";
                 }
 
+                if (obj.Product.Id == 0)
+                {
+                    _unit.Product.Add(obj.Product);
+                    TempData["success"] = "Product created successfully";
+                }
+                else
+                {
+                    _unit.Product.Update(obj.Product);
+                    TempData["success"] = "Product updated successfully";
+                }
 
-                _unit.Product.Add(obj.Product);
                 _unit.Save();
-                TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
             else

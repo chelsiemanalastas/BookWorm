@@ -44,6 +44,7 @@ namespace Book.Models
         [Range(1, 1000)]
         public double Price100 { get; set; }
 
+        [ValidateNever]
         public int? CategoryId { get; set; }
         [ForeignKey("CategoryId")]
         [ValidateNever]
