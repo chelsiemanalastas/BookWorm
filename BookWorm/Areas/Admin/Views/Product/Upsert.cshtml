@@ -1,12 +1,12 @@
 ﻿@model ProductVM
 
-<form method="post">
-    <input asp-for="Product.Id" hidden />
+<form method="POST">
     <div class="border p-3 mt-4">
         <div class="row pb-2">
             <h2 class="text-primary">@(Model.Product.Id != 0 ? "Update" : "Create") Product</h2>
             <hr/>
         </div>
+        <input asp-for="Product.Id" hidden />
         <div class="mb-3 row">
             <label asp-for="Product.Title"></label>
             <input asp-for="Product.Title" class="form-control" />
