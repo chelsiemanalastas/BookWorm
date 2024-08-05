@@ -2,7 +2,9 @@
 using Book.DataAccess.Repository;
 using Book.DataAccess.Repository.IRepository;
 using Book.Models;
+using Book.Models.ViewModels;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace BookWorm.Areas.Admin.Controllers
 {
@@ -18,25 +20,56 @@ namespace BookWorm.Areas.Admin.Controllers
         public IActionResult Index()
         {
             List<Product> ProductList = _unit.Product.GetAll().ToList();
+            IEnumerable<SelectListItem> categories = _unit.Category.GetAll().Select(u => new SelectListItem
+            {
+                Text = u.Name,
+                Value = u.Id.ToString(),
+            });
             return View(ProductList);
         }
 
-        public IActionResult Create()
+        public IActionResult Upsert(int? id)
         {
-            return View();
+            ProductVM productVM = new()
+            {
+                CategoryList = _unit.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                }),
+                Product = new Product()
+            };
+            if (id == null|| id == 0) //CREATE
+            {
+                return View(productVM);
+            }
+            else //UPDATE 
+            {
+                productVM.Product = _unit.Product.Get(u=>u.Id == id);
+                return View(productVM);
+            }
+            return View(productVM);
         }
 
         [HttpPost]
-        public IActionResult Create(Product obj)
+        public IActionResult Upsert(ProductVM obj, IFormFile? file)
         {
             if (ModelState.IsValid)
             {
-                _unit.Product.Add(obj);
+                _unit.Product.Add(obj.Product);
                 _unit.Save();
                 TempData["success"] = "Product created successfully";
                 return RedirectToAction("Index");
             }
-            return View();
+            else
+            {
+                obj.CategoryList = _unit.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                });
+                return View(obj);
+            }
         }
 
         public IActionResult Edit(int? id)
@@ -45,12 +78,23 @@ namespace BookWorm.Areas.Admin.Controllers
             {
                 return NotFound();
             }
-            Product Product = _unit.Product.Get(c => c.Id == id);
-            if (Product == null)
+
+            Product product = _unit.Product.Get(c => c.Id == id);
+            if (product == null)
             {
                 return NotFound();
             }
-            return View(Product);
+
+            ProductVM productVM = new()
+            {
+                CategoryList = _unit.Category.GetAll().Select(u => new SelectListItem
+                {
+                    Text = u.Name,
+                    Value = u.Id.ToString(),
+                }),
+                Product = product
+            };
+            return View(productVM);
         }
 
         [HttpPost]
