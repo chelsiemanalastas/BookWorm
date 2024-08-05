@@ -12,9 +12,11 @@ namespace BookWorm.Areas.Admin.Controllers
     public class ProductController : Controller
     {
         private readonly IUnitOfWork _unit;
-        public ProductController(IUnitOfWork unit)
+        private readonly IWebHostEnvironment _webHostEnv;
+        public ProductController(IUnitOfWork unit, IWebHostEnvironment webHostEnv)
         {
             _unit = unit;
+            _webHostEnv = webHostEnv;
         }
 
         public IActionResult Index()
@@ -56,6 +58,22 @@ namespace BookWorm.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+                string imagePath = @"images\product";
+                string wwwRootPath = _webHostEnv.WebRootPath;
+                if (file != null)
+                {
+                    string fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                    string productPath = Path.Combine(wwwRootPath, imagePath);
+
+                    using (var fileStream = new FileStream(Path.Combine(productPath, fileName), FileMode.Create))
+                    {
+                        file.CopyTo(fileStream);
+                    }
+
+                    obj.Product.ImageUrl = $"\\{imagePath}\\{fileName}";
+                }
+
+
                 _unit.Product.Add(obj.Product);
                 _unit.Save();
                 TempData["success"] = "Product created successfully";

@@ -1,6 +1,6 @@
 ﻿@model ProductVM
 
-<form method="post" enctype="multipart/form-data">
+<form method="post">
     <input asp-for="Product.Id" hidden />
     <div class="border p-3 mt-4">
         <div class="row pb-2">
@@ -55,20 +55,22 @@
         </div>
         <div class="mb-3 row">
             <label asp-for="Product.ImageUrl"></label>
-            <input type="file" asp-for="Product.ImageUrl" class="form-control" />
+            <input type="file" name="file" asp-for="Product.ImageUrl" class="form-control" />
         </div>
         <div class="row">
             <div class="col-6 col-md-3">
-                <button type="submit" class="btn btn-primary form-control">
                     @if (Model.Product.Id != 0)
                     {
-                        <span>Edit</span>
+                        <button type="submit" class="btn btn-primary form-control">
+                            Edit
+                        </button>
                     }
                     else
                     {
-                        <span>Create</span>
+                        <button type="submit" class="btn btn-primary form-control">
+                            Create
+                        </button>
                     }
-                </button>
             </div>
             <div class="col-6 col-md-3">
                 <a asp-controller="Product" asp-action="Index" class="btn btn-light form-control">Back to List</a>
