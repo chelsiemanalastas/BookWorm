@@ -9,6 +9,7 @@
                     <hr />
                 </div>
                 <input asp-for="Product.Id" hidden />
+                <input asp-for="Product.ImageUrl" hidden />
                 <div class="mb-3 row">
                     <label asp-for="Product.Title"></label>
                     <input asp-for="Product.Title" class="form-control" />
@@ -80,7 +81,7 @@
                 </div>
             </div>
             <div class="col-2">
-                <img src="@Model.Product.ImageUrl" width="100%" style="border-radius: 5px; border: 1px solid #000"
+                <img src="@Model.Product.ImageUrl" width="100%" style="border-radius: 5px; border: 1px solid #000" />
             </div>
         </div>
         
