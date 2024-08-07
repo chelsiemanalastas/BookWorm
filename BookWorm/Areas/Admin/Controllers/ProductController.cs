@@ -21,12 +21,7 @@ namespace BookWorm.Areas.Admin.Controllers
 
         public IActionResult Index()
         {
-            List<Product> ProductList = _unit.Product.GetAll().ToList();
-            IEnumerable<SelectListItem> categories = _unit.Category.GetAll().Select(u => new SelectListItem
-            {
-                Text = u.Name,
-                Value = u.Id.ToString(),
-            });
+            List<Product> ProductList = _unit.Product.GetAll(includeProp:"Category").ToList();
             return View(ProductList);
         }
 
