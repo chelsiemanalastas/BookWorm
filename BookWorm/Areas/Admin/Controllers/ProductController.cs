@@ -168,5 +168,15 @@ namespace BookWorm.Areas.Admin.Controllers
             return RedirectToAction("Index");
         }
 
+        #region API REQUESTS
+
+        [HttpGet]
+        public IActionResult GetAll() 
+        {
+            List<Product> ProductList = _unit.Product.GetAll(includeProp: "Category").ToList();
+            return Json(new {data = ProductList});
+        }
+
+        #endregion
     }
 }

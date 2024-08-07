@@ -11,39 +11,21 @@
             </a>
         </div>
     </div>
-    <table class="table table-boredered table-striped">
+    <table id="tblProductList" class="table table-boredered table-striped">
         <thead>
             <tr>
                 <th>Title</th>
                 <th>ISBN</th>
                 <th>Author</th>
-                <th>Category</th>
                 <th>Price</th>
                 <th></th>
             </tr>
         </thead>
 
-        <tbody>
-            @foreach (var obj in Model.OrderBy(u => u.Title))
-            {
-                <tr>
-                    <td>@obj.Title</td>
-                    <td>@obj.ISBN</td>
-                    <td>@obj.Author</td>
-                    <td>@obj.Category.Name</td>
-                    <td>@obj.Price</td>
-                    <td>
-                        <div class="w-75 btn-group" role="group">
-                            <a asp-controller="Product" asp-action="Upsert" asp-route-id="@obj.Id" class="btn btn-primary mx-2" title="Edit">
-                                <i class="bi bi-pencil-fill"></i>
-                            </a>
-                            <a asp-controller="Product" asp-action="Delete" asp-route-id="@obj.Id" class="btn btn-secondary mx-2" title="Delete">
-                                <i class="bi bi-trash-fill"></i>
-                            </a>
-                        </div>
-                    </td>
-                </tr>
-            }
-        </tbody>
     </table>
 </div>
+
+
+@section Scripts {
+    <script src="~/js/product.js"></script>
+}
