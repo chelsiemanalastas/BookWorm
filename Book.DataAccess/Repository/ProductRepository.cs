@@ -17,9 +17,28 @@ namespace Book.DataAccess.Repository
             _db = db;
         }
 
+        // EQUIVALENT TO STORED PROCEDURES AND TRIGGERS | BUSINESS LOGIC
         public void Update(Product product)
         {
-            _db.Products.Update(product);
+            var dbObj = _db.Products.FirstOrDefault(u=>u.Id == product.Id);
+            if (dbObj != null) 
+            { 
+                dbObj.Title = product.Title;
+                dbObj.Description = product.Description;    
+                dbObj.Category = product.Category;  
+                dbObj.ListPrice = product.ListPrice;
+                dbObj.Price = product.Price;
+                dbObj.Price50 = product.Price50;
+                dbObj.Price100 = product.Price100;
+                dbObj.ISBN = product.ISBN;
+                dbObj.Author = product.Author;
+
+                if (dbObj.ImageUrl != null) 
+                { 
+                    dbObj.ImageUrl = dbObj.ImageUrl;
+                }
+                
+            }
         }
     }
 }
