@@ -42,13 +42,13 @@ function Delete(url) {
                 ur: url,
                 type: 'DELETE',
                 success: function (data) {
-                    //toastr.success(data.message);
 
                     Swal.fire({
                         title: "Deleted!",
                         text: data.message,
                         icon: "success"
                     });
+
                 }
             })
         }

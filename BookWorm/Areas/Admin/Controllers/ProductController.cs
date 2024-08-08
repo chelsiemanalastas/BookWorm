@@ -140,34 +140,6 @@ namespace BookWorm.Areas.Admin.Controllers
             return View();
         }
 
-        //public IActionResult Delete(int? id)
-        //{
-        //    if (id == null || id == 0)
-        //    {
-        //        return NotFound();
-        //    }
-        //    Product Product = _unit.Product.Get(c => c.Id == id);
-        //    if (Product == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    return View(Product);
-        //}
-
-        //[HttpPost, ActionName("Delete")]
-        //public IActionResult DeletePOST(int? id)
-        //{
-        //    Product Product = _unit.Product.Get(c => c.Id == id);
-        //    if (Product == null)
-        //    {
-        //        return NotFound();
-        //    }
-        //    _unit.Product.Remove(Product);
-        //    _unit.Save();
-        //    TempData["success"] = "Product deleted successfully";
-        //    return RedirectToAction("Index");
-        //}
-
         #region API REQUESTS
 
         [HttpGet]
