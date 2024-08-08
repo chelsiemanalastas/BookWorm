@@ -1,4 +1,6 @@
 ﻿
+var dataTable;
+
 $(document).ready(function () {
     loadDataTable();
 })
@@ -42,6 +44,8 @@ function Delete(url) {
                 ur: url,
                 type: 'DELETE',
                 success: function (data) {
+
+                    dataTable.ajax.reload();
 
                     Swal.fire({
                         title: "Deleted!",
