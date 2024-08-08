@@ -177,6 +177,7 @@ namespace BookWorm.Areas.Admin.Controllers
             return Json(new {data = ProductList});
         }
 
+        [HttpDelete]
         public IActionResult Delete(int? id)
         {
             var productToDelete = _unit.Product.Get(u=>u.Id == id);
