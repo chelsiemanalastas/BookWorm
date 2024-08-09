@@ -23,6 +23,12 @@ namespace BookWorm.Areas.Customer.Controllers
             return View(products);
         }
 
+        public IActionResult Details(int id)
+        {
+            Product product = _unit.Product.Get(u=> u.Id == id, includeProp: "Category");
+            return View(product);
+        }
+
         public IActionResult Privacy()
         {
             return View();
