@@ -1,7 +1,7 @@
 ﻿
 var dataTable;
 
-$(document).ready(function () {
+1$(document).ready(function () {
     loadDataTable();
 })
 
@@ -14,16 +14,17 @@ function loadDataTable() {
             { data: 'author', "width": "15%" },
             { data: 'category.name', "width": "15%" },
             { data: 'price', "width": "15%" },
-            {
-                data: 'id',
-                "render": function (data) {
-                    return `<div class="btn-group" role="group">
-                        <a href="/admin/product/upsert?id=${data}" class="btn btn-primary mx-2"><i class="bi bi-pencil-fill"></i> Edit </a>
-                        <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i> Delete </a>
-                        </div>`
-                },
-                "width": "20%"
-            }
+            { data: 'price', "width": "15%" },
+            //{
+            //    data: 'id',
+            //    render: function (data) {
+            //        return `<div class="btn-group" role="group">
+            //            <a href="/admin/product/upsert?id=${data}" class="btn btn-primary mx-2"><i class="bi bi-pencil-fill"></i> Edit </a>
+            //            <a onClick=Delete('/admin/product/delete/${data}') class="btn btn-danger mx-2"><i class="bi bi-trash-fill"></i> Delete </a>
+            //            </div>`
+            //    },
+            //    width: "20%"
+            //}
         ]
     });
 }
