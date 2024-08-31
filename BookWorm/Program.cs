@@ -1,4 +1,4 @@
-using Book.DataAccess;
+ using Book.DataAccess;
 using Book.DataAccess.Repository;
 using Book.DataAccess.Repository.IRepository;
 using Microsoft.EntityFrameworkCore;
@@ -29,10 +29,11 @@ if (!app.Environment.IsDevelopment())
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
-
 app.UseRouting();
+
 app.UseAuthentication();
 app.UseAuthorization();
+
 app.MapRazorPages();
 app.MapControllerRoute(
     name: "default",
