@@ -1,7 +1,7 @@
 ﻿
 var dataTable;
 
-1$(document).ready(function () {
+$(document).ready(function () {
     loadDataTable();
 })
 
@@ -9,12 +9,10 @@ function loadDataTable() {
     dataTable = $('#tblProductList').DataTable({
         "ajax": { url: '/admin/product/getall'},
         "columns": [
-            { data: 'title', "width": "20%"},
-            { data: 'isbn', "width": "15%" },
-            { data: 'author', "width": "15%" },
-            { data: 'category.name', "width": "15%" },
-            { data: 'price', "width": "15%" },
-            { data: 'price', "width": "15%" },
+            { data: 'title', "width": "25%"},
+            { data: 'author', "width": "25%" },
+            { data: 'id', "width": "25%" },
+            { data: 'price', "width": "25%" },
             //{
             //    data: 'id',
             //    render: function (data) {
